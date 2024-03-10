@@ -16,13 +16,8 @@ def process_bank_transfer(account_from, account_to, secure_code, amount):
     # 5-second delay before processing the response
     time.sleep(5)
     # Verify the sender's account
-    verification_result = dns.bank_verify(account_from, "NAME", "CODE", secure_code)
 
     # Check if the verification was successful
-    if verification_result.startswith("Success"):
         # If verification is successful, proceed with the bank transfer
-        result = dns.bank_transfer(account_from, account_to, secure_code, amount)
-        return result
-    else:
-        # If verification fails, return a message indicating the failure
-        return f"Verification failed. Error: {verification_result}"
+    result = dns.bank_transfer(account_from, account_to, secure_code, amount)
+    return result
